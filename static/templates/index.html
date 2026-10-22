@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fondo Fotográfico MNA</title>
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'mna-dark': '#101111',
+                        'mna-green': '#154230',
+                        'mna-beige': '#A6824A',
+                        'mna-burgundy': '#5D1E21',
+                        'mna-cream': '#E6E2DA',
+                        'mna-brown': '#362017',
+                        'mna-olive': '#4C5409'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/static/css/style.css?v=2">
+</head>
+
+<body class="bg-mna-cream text-mna-dark antialiased overflow-x-hidden">
+    <div id="loader">Cargando...</div>
+
+    <!-- 1. HERO SECTION -->
+    <section class="hero-radial-bg h-screen flex flex-col relative overflow-hidden px-5 sm:px-8 md:px-10">
+        <!-- Navbar -->
+        <nav class="flex justify-between items-center pt-6 md:pt-8 relative z-20 fade-in" data-delay="0" data-y="-20">
+            <div class="flex gap-4 md:gap-8 w-full justify-between">
+                <a href="#"
+                    class="nav-btn px-4 py-2 text-mna-burgundy font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] hover:opacity-70 transition-opacity">Inicio</a>
+                <a href="#"
+                    class="nav-btn px-4 py-2 text-mna-burgundy font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] hover:opacity-70 transition-opacity">Archivo</a>
+                <a href="#"
+                    class="nav-btn px-4 py-2 text-mna-burgundy font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] hover:opacity-70 transition-opacity">Colecciones</a>
+                <a href="#"
+                    class="nav-btn px-4 py-2 text-mna-burgundy font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] hover:opacity-70 transition-opacity">Contacto</a>
+            </div>
+        </nav>
+
+        <!-- Titular Masivo -->
+        <div class="flex-grow flex flex-col justify-center items-center relative z-20 overflow-hidden">
+            <h1 class="text-gradient font-display uppercase tracking-tight leading-none whitespace-nowrap w-full text-center text-[15vw] sm:text-[8vw] md:text-[8vw] lg:text-[8vw] fade-in"
+                data-delay="0.15" data-y="40">
+                Fondo fotográfico MNA
+            </h1>
+        </div>
+
+        <!-- Barra Inferior -->
+        <div class="flex justify-between items-end pb-7 sm:pb-8 md:pb-10 relative z-20">
+            <p class="text-mna-burgundy font-light uppercase tracking-wide leading-snug max-w-[160px] sm:max-w-[220px] md:max-w-[260px] fade-in"
+                style="font-size: clamp(0.75rem, 1.4vw, 1.5rem);" data-delay="0.35" data-y="20">
+                El Archivo Histórico pone a disposición del público el Fondo
+                Fotográfico para facilitar la consulta y fomentar la colaboración en la
+                investigación y estudio de la memoria histórica resguardada en su acervo fotográfico.
+            </p>
+            <button
+                class="explore-btn rounded-full text-mna-cream font-medium uppercase tracking-widest px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 text-xs sm:text-sm md:text-base fade-in"
+                data-delay="0.5" data-y="20">
+                Explorar el Archivo
+            </button>
+        </div>
+
+        <!-- Retrato Flotante (Magnet) -->
+        <div class="absolute left-1/2 -translate-x-1/2 z-10 w-[280px] sm:w-[360px] md:w-[440px] lg:w-[520px] top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0 fade-in"
+            data-delay="0.6" data-y="30">
+            <div class="magnet-container w-full h-full" data-padding="150" data-strength="3">
+                <img src="/static/frame/0001.jpg" alt="Retrato Histórico"
+                    class="w-full h-auto rounded-t-full object-cover magnet-target shadow-2xl">
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. MARQUEE SECTION -->
+    <section class="bg-mna-cream pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden">
+        <div class="flex flex-col gap-3">
+            <!-- Row 1 (Move Right) -->
+            <div class="marquee-row flex gap-3 w-[200%]" id="marquee-1">
+                {% for i in range(1, 11) %}
+                <img src="/static/marquee/thumb_{{ '%02d' | format(i) }}.jpg" loading="lazy"
+                    class="w-[420px] h-[270px] rounded-2xl object-cover " alt="Miniatura">
+                {% endfor %}
+                {% for i in range(1, 11) %}
+                <img src="/static/marquee/thumb_{{ '%02d' | format(i) }}.jpg" loading="lazy"
+                    class="w-[420px] h-[270px] rounded-2xl object-cover " alt="Miniatura">
+                {% endfor %}
+                {% for i in range(1, 11) %}
+                <img src="/static/marquee/thumb_{{ '%02d' | format(i) }}.jpg" loading="lazy"
+                    class="w-[420px] h-[270px] rounded-2xl object-cover " alt="Miniatura">
+                {% endfor %}
+            </div>
+            <!-- Row 2 (Move Left) -->
+            <div class="marquee-row flex gap-3 w-[200%] justify-end" id="marquee-2">
+                {% for i in range(10, 0, -1) %}
+                <img src="/static/marquee/thumb_{{ '%02d' | format(i) }}.jpg" loading="lazy"
+                    class="w-[420px] h-[270px] rounded-2xl object-cover " alt="Miniatura">
+                {% endfor %}
+                {% for i in range(10, 0, -1) %}
+                <img src="/static/marquee/thumb_{{ '%02d' | format(i) }}.jpg" loading="lazy"
+                    class="w-[420px] h-[270px] rounded-2xl object-cover " alt="Miniatura">
+                {% endfor %}
+                {% for i in range(10, 0, -1) %}
+                <img src="/static/marquee/thumb_{{ '%02d' | format(i) }}.jpg" loading="lazy"
+                    class="w-[420px] h-[270px] rounded-2xl object-cover " alt="Miniatura">
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. NARRATIVE CANVAS SECTION -->
+    <section id="canvas-section" class="relative bg-mna-cream" style="height: 400vh;">
+        <div class="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center">
+            <canvas id="narrative-canvas"></canvas>
+
+            <!-- Phase 1: 0-20% -->
+            <div class="canvas-text-phase absolute inset-0 flex flex-col justify-center items-start px-10 md:px-20 pointer-events-none opacity-0"
+                id="phase-1">
+                <h2 class="font-heading italic text-5xl md:text-7xl font-bold mb-4 drop-shadow-lg text-mna-green">Cada
+                    imagen es un documento</h2>
+                <p class="text-xl md:text-3xl font-light text-mna-dark/80 max-w-xl drop-shadow-md">Detrás de
+                    cada fotografía hay un momento, un lugar, una mirada</p>
+            </div>
+
+            <!-- Phase 2: 20-55% -->
+            <div class="canvas-text-phase absolute inset-0 flex flex-col justify-center items-end text-right px-10 md:px-20 pointer-events-none opacity-0"
+                id="phase-2">
+                <h2 class="font-heading italic text-5xl md:text-7xl font-bold mb-6 drop-shadow-lg text-mna-dark">Un
+                    archivo vivo de la memoria</h2>
+                <ul class="text-lg md:text-2xl font-light text-mna-dark/80 flex flex-col gap-3 drop-shadow-md">
+                    <li>Fichas de catalogación y contexto histórico</li>
+                    <li>Clasificación por autor, década y colección</li>
+                    <li>Consulta abierta para investigación</li>
+                </ul>
+            </div>
+
+            <!-- Phase 3: 55-85% -->
+            <div class="canvas-text-phase absolute inset-0 flex flex-col justify-center items-start px-10 md:px-20 pointer-events-none opacity-0"
+                id="phase-3">
+                <h2 class="font-heading italic text-5xl md:text-7xl font-bold mb-4 drop-shadow-lg text-mna-dark">
+                    Resguardo, estudio y difusión</h2>
+                <p class="text-xl md:text-3xl font-light text-mna-dark/80 max-w-2xl drop-shadow-md">
+                    Facilitar la consulta y fomentar la colaboración en el estudio de la memoria histórica del país</p>
+            </div>
+
+            <!-- Phase 4: 85-100% -->
+            <div class="canvas-text-phase absolute inset-0 flex flex-col justify-center items-center text-center px-10 pointer-events-none opacity-0"
+                id="phase-4">
+                <h2 class="font-heading italic text-6xl md:text-8xl font-bold mb-4 drop-shadow-lg text-mna-burgundy">
+                    Explora el archivo completo</h2>
+                <p
+                    class="text-2xl md:text-4xl font-light text-mna-dark/90 font-display uppercase tracking-wider drop-shadow-md">
+                    Miles de fotografías, un solo acervo digital</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. ABOUT SECTION -->
+    <section
+        class="min-h-screen bg-mna-cream relative w-full flex-col justify-center items-center px-5 sm:px-8 md:px-10 py-20 overflow-hidden">
+
+        <div class="flex flex-col items-center gap-10 sm:gap-14 md:gap-16 z-10 relative">
+            <h2 class="text-gradient font-display uppercase leading-none tracking-tight text-center fade-in"
+                style="font-size: clamp(3rem, 12vw, 160px);" data-delay="0" data-y="40">Sobre el archivo</h2>
+
+            <!-- Elfsight Number Counter | Untitled Number Counter -->
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+
+            <div class="w-full max-w-7xl">
+                <div class="elfsight-app-49ca464b-85c9-4159-8cc0-53718114ae65" data-elfsight-app-lazy>
+                </div>
+            </div>
+
+            <button
+                class="explore-btn rounded-full text-mna-cream font-medium uppercase tracking-widest px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 text-xs sm:text-sm md:text-base mt-10">
+                Ver el archivo completo
+            </button>
+
+        </div>
+    </section>
+
+    <!-- 5. EXPLORE SECTION -->
+    <section
+        class="bg-mna-brown rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32 relative z-20 text-mna-cream">
+        <h2 class="font-display uppercase text-center mb-16 sm:mb-20 md:mb-28"
+            style="font-size: clamp(3rem, 12vw, 160px);">Cómo consultar</h2>
+
+        <div class="max-w-5xl mx-auto flex flex-col">
+            <!-- Item 1 -->
+            <div
+                class="explore-item flex flex-col sm:flex-row items-start sm:items-center py-8 sm:py-10 md:py-12 border-b border-[rgba(22,36,28,0.15)] opacity-0">
+                <span class="font-black w-24 sm:w-32 md:w-48 leading-none"
+                    style="font-size: clamp(3rem, 10vw, 140px);">1</span>
+                <div class="flex-grow pt-2 sm:pt-0">
+                    <h3 class="font-medium uppercase mb-2" style="font-size: clamp(1rem, 2.2vw, 2.1rem);">Lugar y
+                        horario</h3>
+                    <p class="font-light leading-relaxed max-w-2xl opacity-60"
+                        style="font-size: clamp(0.85rem, 1.6vw, 1.25rem);">El AHMNA realiza un prestamo dentro de las
+                        instalaciones del AHMNA en el área de consulta en
+                        un horario de lunes a viernes de 9:00 a 17:00 horas (el ultimo miercoles de cada mes el servicio
+                        se suspende a las 14:00 horas)</p>
+                </div>
+            </div>
+            <!-- Item 2 -->
+            <div
+                class="explore-item flex flex-col sm:flex-row items-start sm:items-center py-8 sm:py-10 md:py-12 border-b border-[rgba(22,36,28,0.15)] opacity-0">
+                <span class="font-black w-24 sm:w-32 md:w-48 leading-none"
+                    style="font-size: clamp(3rem, 10vw, 140px);">2</span>
+                <div class="flex-grow pt-2 sm:pt-0">
+                    <h3 class="font-medium uppercase mb-2" style="font-size: clamp(1rem, 2.2vw, 2.1rem);">Consulta de
+                        archivos</h3>
+                    <p class="font-light leading-relaxed max-w-2xl opacity-60"
+                        style="font-size: clamp(0.85rem, 1.6vw, 1.25rem);">Debido a acciones para preservar las
+                        colecciones fotograficas se recomienda consular el material
+                        de manera digital para reducir la degradacion de las fotyografias. Debido a eso la consulta
+                        física es limitada a investigaciones o solicitudes por escrito</p>
+                </div>
+            </div>
+            <!-- Item 3 -->
+            <div
+                class="explore-item flex flex-col sm:flex-row items-start sm:items-center py-8 sm:py-10 md:py-12 border-b border-[rgba(22,36,28,0.15)] opacity-0">
+                <span class="font-black w-24 sm:w-32 md:w-48 leading-none"
+                    style="font-size: clamp(3rem, 10vw, 140px);">3</span>
+                <div class="flex-grow pt-2 sm:pt-0">
+                    <h3 class="font-medium uppercase mb-2" style="font-size: clamp(1rem, 2.2vw, 2.1rem);">Servicio
+                        especializado/ asesoría</h3>
+                    <p class="font-light leading-relaxed max-w-2xl opacity-60"
+                        style="font-size: clamp(0.85rem, 1.6vw, 1.25rem);">Se le brindara con respecto a la búsqueda de
+                        información y especimenes fotográficos de acuerdo a los temas de investigación
+                        que se trabaje. Este servicio apoya al usuario en la búsqueda de información especifíca de
+                        información, reproducción digital y orientación de trámites y servicios.</p>
+                </div>
+            </div>
+            <!-- Item 4 -->
+            <div
+                class="explore-item flex flex-col sm:flex-row items-start sm:items-center py-8 sm:py-10 md:py-12 border-b border-[rgba(22,36,28,0.15)] opacity-0">
+                <span class="font-black w-24 sm:w-32 md:w-48 leading-none"
+                    style="font-size: clamp(3rem, 10vw, 140px);">4</span>
+                <div class="flex-grow pt-2 sm:pt-0">
+                    <h3 class="font-medium uppercase mb-2" style="font-size: clamp(1rem, 2.2vw, 2.1rem);">Consulta y
+                        modalidades</h3>
+                    <p class="font-light leading-relaxed max-w-2xl opacity-60"
+                        style="font-size: clamp(0.85rem, 1.6vw, 1.25rem);">Sea la forma de consulta del material
+                        fotográfico por la que opte
+                        y/o solicite el usuario se deberá acudir con PREVIA CITA, la cual puede realizarse por medio de
+                        correo electrónico,
+                        teléfono o agenda virtual que encontrará en este mismo sitio web en la sección de CONTACTO y
+                        CITAS.
+                    </p>
+
+                </div>
+            </div>
+            <!-- Item 5 -->
+            <div
+                class="explore-item flex flex-col sm:flex-row items-start sm:items-center py-8 sm:py-10 md:py-12 opacity-0">
+                <span class="font-black w-24 sm:w-32 md:w-48 leading-none"
+                    style="font-size: clamp(3rem, 10vw, 140px);">5</span>
+                <div class="flex-grow pt-2 sm:pt-0">
+                    <h3 class="font-medium uppercase mb-2" style="font-size: clamp(1rem, 2.2vw, 2.1rem);">Reproducción
+                        de imágenes</h3>
+                    <p class="font-light leading-relaxed max-w-2xl opacity-60"
+                        style="font-size: clamp(0.85rem, 1.6vw, 1.25rem);">Tramites para obtener copias digitales del
+                        fondo fotografico
+                        y autorizacion de reproduccion en medios impresos y digitales </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. COLLECTIONS SECTION -->
+    <section
+        class="bg-mna-cream rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative z-30 pt-20 pb-32">
+        <h2 class="text-gradient font-display uppercase text-center mb-16" style="font-size: clamp(3rem, 12vw, 160px);">
+            Colección</h2>
+
+        <div id="collections-container" class="relative max-w-7xl mx-auto px-5 sm:px-8 md:px-10" style="height: 300vh;">
+            <!-- Card 1 -->
+            <div
+                class="collection-card sticky top-24 md:top-32 bg-mna-cream border-2 border-mna-beige rounded-[40px] sm:rounded-[50px] md:rounded-[60px] p-4 sm:p-6 md:p-8 w-full mb-20 origin-top shadow-2xl">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
+                    <div class="flex items-center gap-6">
+                        <span class="font-display font-black text-mna-beige text-5xl md:text-7xl">01</span>
+                        <div>
+                            <span
+                                class="uppercase tracking-widest text-mna-burgundy text-xs sm:text-sm font-medium block mb-1">El
+                                museo antecesor</span>
+                            <h3 class="font-heading italic text-3xl md:text-5xl">Fondo Moneda</h3>
+                        </div>
+                    </div>
+                    <button
+                        class="rounded-full border-2 border-mna-beige text-mna-dark font-medium uppercase tracking-widest px-8 py-3 sm:px-10 sm:py-3.5 text-sm sm:text-base hover:bg-mna-beige hover:text-white transition-colors">
+                        Ver colección
+                    </button>
+                </div>
+                <div class="flex gap-4 sm:gap-6 h-auto">
+                    <div class="flex flex-col gap-4 sm:gap-6 w-[40%]">
+                        <img src="/static/colecciones/F1_1.JPG"
+                            class="w-full object-cover rounded-[30px] sm:rounded-[40px]"
+                            style="height: clamp(130px, 16vw, 230px);" alt="Expedición 1">
+                        <img src="/static/colecciones/F1_3.jpg"
+                            class="w-full object-cover rounded-[30px] sm:rounded-[40px]"
+                            style="height: clamp(160px, 22vw, 340px);" alt="Expedición 2">
+                    </div>
+                    <div class="w-[60%]">
+                        <img src="/static/colecciones/F1_2.jpg"
+                            class="w-full h-full object-cover rounded-[30px] sm:rounded-[40px]"
+                            alt="Expedición Principal">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="collection-card sticky top-24 md:top-32 bg-mna-cream border-2 border-mna-beige rounded-[40px] sm:rounded-[50px] md:rounded-[60px] p-4 sm:p-6 md:p-8 w-full mb-20 origin-top shadow-2xl"
+                style="top: calc(6rem + 28px);">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
+                    <div class="flex items-center gap-6">
+                        <span class="font-display font-black text-mna-beige text-5xl md:text-7xl">02</span>
+                        <div>
+                            <span
+                                class="uppercase tracking-widest text-mna-burgundy text-xs sm:text-sm font-medium block mb-1">Planeación
+                                e instalación</span>
+                            <h3 class="font-heading italic text-3xl md:text-5xl">Museo Nacional de Antropología</h3>
+                        </div>
+                    </div>
+                    <button
+                        class="rounded-full border-2 border-mna-beige text-mna-dark font-medium uppercase tracking-widest px-8 py-3 sm:px-10 sm:py-3.5 text-sm sm:text-base hover:bg-mna-beige hover:text-white transition-colors">
+                        Ver colección
+                    </button>
+                </div>
+                <div class="flex gap-4 sm:gap-6 h-auto">
+                    <div class="flex flex-col gap-4 sm:gap-6 w-[40%]">
+                        <img src="/static/colecciones/c2_2.jpg"
+                            class="w-full object-cover rounded-[30px] sm:rounded-[40px]"
+                            style="height: clamp(130px, 16vw, 230px);" alt="Retrato 1">
+                        <img src="/static/colecciones/c2_3.jpg"
+                            class="w-full object-cover rounded-[30px] sm:rounded-[40px]"
+                            style="height: clamp(160px, 22vw, 340px);" alt="Retrato 2">
+                    </div>
+                    <div class="w-[60%]">
+                        <img src="/static/colecciones/c2_1.jpg"
+                            class="w-full h-full object-cover rounded-[30px] sm:rounded-[40px]" alt="Retrato Principal">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="collection-card sticky top-24 md:top-32 bg-mna-cream border-2 border-mna-beige rounded-[40px] sm:rounded-[50px] md:rounded-[60px] p-4 sm:p-6 md:p-8 w-full mb-20 origin-top shadow-2xl"
+                style="top: calc(6rem + 56px);">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6">
+                    <div class="flex items-center gap-6">
+                        <span class="font-display font-black text-mna-beige text-5xl md:text-7xl">03</span>
+                        <div>
+                            <span
+                                class="uppercase tracking-widest text-mna-burgundy text-xs sm:text-sm font-medium block mb-1">Institucional</span>
+                            <h3 class="font-heading italic text-3xl md:text-5xl">Visitantes y servicios</h3>
+                        </div>
+                    </div>
+                    <button
+                        class="rounded-full border-2 border-mna-beige text-mna-dark font-medium uppercase tracking-widest px-8 py-3 sm:px-10 sm:py-3.5 text-sm sm:text-base hover:bg-mna-beige hover:text-white transition-colors">
+                        Ver colección
+                    </button>
+                </div>
+                <div class="flex gap-4 sm:gap-6 h-auto">
+                    <div class="flex flex-col gap-4 sm:gap-6 w-[40%]">
+                        <img src="/static/colecciones/c3_2.jpg"
+                            class="w-full object-cover rounded-[30px] sm:rounded-[40px]"
+                            style="height: clamp(130px, 16vw, 230px);" alt="Construcción 1">
+                        <img src="/static/colecciones/c3_3.jpg"
+                            class="w-full object-cover rounded-[30px] sm:rounded-[40px]"
+                            style="height: clamp(160px, 22vw, 340px);" alt="Construcción 2">
+                    </div>
+                    <div class="w-[60%]">
+                        <img src="/static/colecciones/c3_1.jpg"
+                            class="w-full h-full object-cover rounded-[30px] sm:rounded-[40px]"
+                            alt="Construcción Principal">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. GALLERY SECTION -->
+    <section class="bg-mna-cream px-5 sm:px-8 md:px-10 py-20 pb-40">
+        <div class="max-w-7xl mx-auto">
+            <!-- Search & Filters -->
+            <div class="flex flex-col md:flex-row gap-6 mb-12 items-center justify-between">
+                <div class="w-full md:w-1/3">
+                    <div class="liquid-glass-strong rounded-full px-6 py-3 flex items-center gap-3">
+                        <i data-lucide="search" class="text-mna-dark w-5 h-5"></i>
+                        <input type="text" placeholder="Buscar en el archivo..."
+                            class="bg-transparent border-none outline-none text-mna-dark w-full placeholder:text-mna-dark/50">
+                    </div>
+                </div>
+                <div class="flex flex-wrap gap-3 justify-center md:justify-end">
+                    <button
+                        class="liquid-glass rounded-full px-5 py-2 text-sm font-medium uppercase tracking-wider text-mna-dark hover:bg-mna-dark/10 transition-colors">Década</button>
+                    <button
+                        class="liquid-glass rounded-full px-5 py-2 text-sm font-medium uppercase tracking-wider text-mna-dark hover:bg-mna-dark/10 transition-colors">Colección</button>
+                    <button
+                        class="liquid-glass rounded-full px-5 py-2 text-sm font-medium uppercase tracking-wider text-mna-dark hover:bg-mna-dark/10 transition-colors">Tema</button>
+                    <button
+                        class="liquid-glass rounded-full px-5 py-2 text-sm font-medium uppercase tracking-wider text-mna-dark hover:bg-mna-dark/10 transition-colors">Formato</button>
+                </div>
+            </div>
+
+            <!-- Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {% for i in range(1, 13) %}
+                <div class="liquid-glass rounded-3xl p-3 flex flex-col gap-3 group cursor-pointer">
+                    <div class="relative overflow-hidden rounded-2xl w-full h-[300px]">
+                        <img src="/static/gallery/g_{{ '%02d' | format(i) }}.jpg"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                            loading="lazy" alt="Foto Galería">
+                        <div
+                            class="absolute inset-0 bg-mna-burgundy opacity-0 group-hover:opacity-20 transition-opacity duration-300 mix-blend-color">
+                        </div>
+                    </div>
+                    <div class="px-2 pb-2">
+                        <h4 class="font-heading italic text-xl mb-1 truncate">Fotografía Histórica {{ i }}</h4>
+                        <div
+                            class="flex justify-between items-center text-xs text-mna-dark/60 font-medium uppercase tracking-wider">
+                            <span>Anónimo</span>
+                            <span>194{{ i % 10 }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="flex justify-center mt-16">
+                <button
+                    class="liquid-glass rounded-full px-10 py-4 font-medium uppercase tracking-widest text-mna-dark hover:bg-mna-dark/10 transition-colors">
+                    Cargar más fotografías
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="/static/js/main.js"></script>
+</body>
+
+</html>
