@@ -131,25 +131,6 @@ h3,
   pointer-events: none;
 }
 
-.hero-radial-bg {
-  background: radial-gradient(circle at center, #f3ead6 0%, #e0d3b9 100%);
-}
-
-.marquee-duotone {
-  mix-blend-mode: luminosity;
-  filter: sepia(1) hue-rotate(330deg) saturate(0.6) brightness(0.8) contrast(1.2);
-}
-
-.magnet-target {
-  will-change: transform;
-}
-
-canvas#narrative-canvas {
-  width: 100%;
-  height: 100vh;
-  object-fit: contain;
-}
-
 /* Loader */
 #loader {
   position: fixed;
@@ -163,4 +144,343 @@ canvas#narrative-canvas {
   font-family: 'Instrument Serif', serif;
   font-size: 2rem;
   transition: opacity 0.5s ease;
+}
+
+/* Galería: órbita de ejes temáticos (static/js/orbita.js define --radio e --item) */
+.orbita {
+  --radio: 300px;
+  --item: 120px;
+  position: relative;
+  width: min(100%, 880px, max(320px, calc(100vh - 140px)));
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.orbita.has-active {
+  cursor: pointer;
+}
+
+.orbita-pista {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--radio) * 2);
+  height: calc(var(--radio) * 2);
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(166, 130, 74, 0.45);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.orbita-pista::after {
+  content: "";
+  position: absolute;
+  inset: calc(var(--item) * 0.75);
+  border: 1px dashed rgba(93, 30, 33, 0.25);
+  border-radius: 50%;
+  animation: orbita-giro 140s linear infinite reverse;
+}
+
+.orbita.has-active .orbita-pista::after {
+  animation-play-state: paused;
+}
+
+@keyframes orbita-giro {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.orbita-centro {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc((var(--radio) * 2 - var(--item)) * 0.72);
+  transform: translate(-50%, -50%);
+  text-align: center;
+  pointer-events: none;
+}
+
+.orbita-centro-texto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35em;
+}
+
+.orbita-kicker {
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: clamp(0.6rem, calc(var(--radio) * 0.035), 0.85rem);
+  color: #5D1E21;
+}
+
+.orbita-numero {
+  font-weight: 900;
+  line-height: 0.9;
+  font-size: calc(var(--radio) * 0.3);
+  color: #A6824A;
+}
+
+.orbita-titulo {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  line-height: 1.1;
+  font-size: clamp(0.95rem, calc(var(--radio) * 0.08), 2.4rem);
+  color: #101111;
+}
+
+.orbita-item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  display: block;
+  width: var(--item);
+  height: var(--item);
+  border-radius: 50%;
+  will-change: transform;
+}
+
+.orbita-item.is-active {
+  z-index: 2;
+}
+
+.orbita-item:focus-visible {
+  outline: none;
+}
+
+.orbita-marco {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #101111;
+  outline: 2px solid #A6824A;
+  outline-offset: clamp(2px, calc(var(--item) * 0.035), 4px);
+  box-shadow: 0 14px 30px -14px rgba(16, 17, 17, 0.5);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.4s ease, filter 0.4s ease, outline-color 0.3s ease;
+}
+
+.orbita-marco img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* La escala debe coincidir con ESCALA_ACTIVO en orbita.js */
+.orbita-item.is-active .orbita-marco {
+  transform: scale(1.22);
+  outline-color: #5D1E21;
+}
+
+.orbita-item.is-active .orbita-marco img {
+  transform: scale(1.08);
+}
+
+.orbita.has-active .orbita-item:not(.is-active) .orbita-marco {
+  opacity: 0.45;
+  filter: grayscale(1);
+  transform: scale(0.92);
+}
+
+.orbita-item:focus-visible .orbita-marco {
+  outline-width: 3px;
+  outline-color: #5D1E21;
+}
+
+/* Copia de la imagen que crece hasta cubrir la pantalla al abrir un eje */
+.orbita-expansion {
+  position: fixed;
+  z-index: 9000;
+  overflow: hidden;
+  border-radius: 50%;
+  background: #101111;
+}
+
+.orbita-expansion img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbita-pista::after {
+    animation: none;
+  }
+
+  .orbita-marco,
+  .orbita-marco img {
+    transition: none;
+  }
+}
+
+/* Página de un eje temático (static/templates/eje.html) */
+body.eje-page {
+  margin: 0;
+  background-color: #101111;
+  color: #E6E2DA;
+}
+
+.eje-page *,
+.eje-page *::before,
+.eje-page *::after {
+  box-sizing: border-box;
+}
+
+.eje-page h1,
+.eje-page p {
+  margin: 0;
+}
+
+.eje-page a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.eje-hero {
+  position: relative;
+  height: 100vh;
+  height: 100svh;
+  overflow: hidden;
+  background: #101111;
+}
+
+.eje-hero-imagen {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+
+/* Viniendo de la órbita la imagen ya está a pantalla completa: se muestra sin fundido */
+.desde-orbita .eje-hero-imagen {
+  opacity: 1;
+}
+
+.entrada-normal .eje-hero-imagen {
+  animation: eje-aparecer 0.8s ease forwards;
+}
+
+.eje-hero-velo {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(16, 17, 17, 0.45) 0%, rgba(16, 17, 17, 0) 22%, rgba(16, 17, 17, 0.3) 50%, rgba(16, 17, 17, 0.92) 100%);
+  opacity: 0;
+  animation: eje-aparecer 0.9s 0.1s ease forwards;
+}
+
+.eje-volver {
+  position: absolute;
+  top: 1.5rem;
+  left: clamp(1.25rem, 4vw, 2.5rem);
+  z-index: 2;
+  padding: 0.5rem 1.25rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  transition: opacity 0.3s ease;
+  animation: eje-subir 0.8s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.eje-volver:hover {
+  opacity: 0.7;
+}
+
+.eje-hero-texto {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(2rem, 8vh, 5rem);
+  padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+  max-width: 72rem;
+  animation: eje-subir 0.9s 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.eje-hero-texto .eje-kicker {
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.85rem;
+  color: #A6824A;
+}
+
+.eje-titulo {
+  font-style: italic;
+  font-weight: 400;
+  line-height: 1;
+  font-size: clamp(2.5rem, 7vw, 6.5rem);
+}
+
+.eje-contenido {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 5rem clamp(1.25rem, 4vw, 2.5rem) 6rem;
+}
+
+.eje-aviso {
+  max-width: 40rem;
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  line-height: 1.2;
+  color: rgba(230, 226, 218, 0.75);
+}
+
+.eje-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 4rem;
+}
+
+.eje-nav a {
+  padding: 0.6rem 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.85rem;
+  transition: opacity 0.3s ease;
+}
+
+.eje-nav a:hover {
+  opacity: 0.7;
+}
+
+@keyframes eje-aparecer {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes eje-subir {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entrada-normal .eje-hero-imagen,
+  .eje-hero-velo,
+  .eje-volver,
+  .eje-hero-texto {
+    animation-duration: 0.01s;
+    animation-delay: 0s;
+  }
 }

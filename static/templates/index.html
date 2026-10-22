@@ -25,145 +25,35 @@
         }
     </script>
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/static/css/style.css?v=2">
+    <link rel="stylesheet" href="/static/css/style.css?v=3">
 </head>
 
 <body class="bg-mna-cream text-mna-dark antialiased overflow-x-hidden">
     <div id="loader">Cargando...</div>
 
-    <!-- 1. HERO SECTION -->
-    <section class="hero-radial-bg h-screen flex flex-col relative overflow-hidden px-5 sm:px-8 md:px-10">
-        <!-- Navbar -->
-        <nav class="flex justify-between items-center pt-6 md:pt-8 relative z-20 fade-in" data-delay="0" data-y="-20">
-            <div class="flex gap-4 md:gap-8 w-full justify-between">
-                <a href="#"
-                    class="nav-btn px-4 py-2 text-mna-burgundy font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] hover:opacity-70 transition-opacity">Inicio</a>
-                <a href="#"
-                    class="nav-btn px-4 py-2 text-mna-burgundy font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] hover:opacity-70 transition-opacity">Archivo</a>
-                <a href="#"
-                    class="nav-btn px-4 py-2 text-mna-burgundy font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] hover:opacity-70 transition-opacity">Colecciones</a>
-                <a href="#"
-                    class="nav-btn px-4 py-2 text-mna-burgundy font-medium uppercase tracking-wider text-sm md:text-lg lg:text-[1.4rem] hover:opacity-70 transition-opacity">Contacto</a>
-            </div>
-        </nav>
-
-        <!-- Titular Masivo -->
-        <div class="flex-grow flex flex-col justify-center items-center relative z-20 overflow-hidden">
-            <h1 class="text-gradient font-display uppercase tracking-tight leading-none whitespace-nowrap w-full text-center text-[15vw] sm:text-[8vw] md:text-[8vw] lg:text-[8vw] fade-in"
-                data-delay="0.15" data-y="40">
-                Fondo fotográfico MNA
-            </h1>
-        </div>
-
-        <!-- Barra Inferior -->
-        <div class="flex justify-between items-end pb-7 sm:pb-8 md:pb-10 relative z-20">
-            <p class="text-mna-burgundy font-light uppercase tracking-wide leading-snug max-w-[160px] sm:max-w-[220px] md:max-w-[260px] fade-in"
-                style="font-size: clamp(0.75rem, 1.4vw, 1.5rem);" data-delay="0.35" data-y="20">
-                El Archivo Histórico pone a disposición del público el Fondo
-                Fotográfico para facilitar la consulta y fomentar la colaboración en la
-                investigación y estudio de la memoria histórica resguardada en su acervo fotográfico.
+    <!-- 1. GALLERY SECTION: los 13 ejes temáticos en órbita (los círculos los genera static/js/orbita.js a partir de static/js/ejes.js) -->
+    <section id="galeria" class="bg-mna-cream px-5 sm:px-8 md:px-10 py-20 pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-gradient font-display uppercase text-center mb-4" style="font-size: clamp(3rem, 12vw, 120px);">
+                Galería
+            </h2>
+            <p class="text-center font-light text-mna-dark/70 text-base sm:text-lg max-w-xl mx-auto mb-10">
+                Elige una imagen para explorar cada uno de los ejes temáticos del archivo.
             </p>
-            <button
-                class="explore-btn rounded-full text-mna-cream font-medium uppercase tracking-widest px-8 py-3 sm:px-10 sm:py-3.5 md:px-12 md:py-4 text-xs sm:text-sm md:text-base fade-in"
-                data-delay="0.5" data-y="20">
-                Explorar el Archivo
-            </button>
-        </div>
-
-        <!-- Retrato Flotante (Magnet) -->
-        <div class="absolute left-1/2 -translate-x-1/2 z-10 w-[280px] sm:w-[360px] md:w-[440px] lg:w-[520px] top-1/2 -translate-y-1/2 sm:top-auto sm:translate-y-0 sm:bottom-0 fade-in"
-            data-delay="0.6" data-y="30">
-            <div class="magnet-container w-full h-full" data-padding="150" data-strength="3">
-                <img src="/static/frame/0001.jpg" alt="Retrato Histórico"
-                    class="w-full h-auto rounded-t-full object-cover magnet-target shadow-2xl">
+            <div id="orbita" class="orbita">
+                <div class="orbita-pista" aria-hidden="true"></div>
+                <div class="orbita-centro">
+                    <div class="orbita-centro-texto">
+                        <span class="orbita-kicker" id="orbita-kicker">Fondo fotográfico</span>
+                        <span class="orbita-numero" id="orbita-numero">13</span>
+                        <span class="orbita-titulo" id="orbita-titulo">ejes temáticos</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 2. MARQUEE SECTION -->
-    <section class="bg-mna-cream pt-24 sm:pt-32 md:pt-40 pb-10 overflow-hidden">
-        <div class="flex flex-col gap-3">
-            <!-- Row 1 (Move Right) -->
-            <div class="marquee-row flex gap-3 w-[200%]" id="marquee-1">
-                {% for i in range(1, 11) %}
-                <img src="/static/marquee/thumb_{{ '%02d' | format(i) }}.jpg" loading="lazy"
-                    class="w-[420px] h-[270px] rounded-2xl object-cover " alt="Miniatura">
-                {% endfor %}
-                {% for i in range(1, 11) %}
-                <img src="/static/marquee/thumb_{{ '%02d' | format(i) }}.jpg" loading="lazy"
-                    class="w-[420px] h-[270px] rounded-2xl object-cover " alt="Miniatura">
-                {% endfor %}
-                {% for i in range(1, 11) %}
-                <img src="/static/marquee/thumb_{{ '%02d' | format(i) }}.jpg" loading="lazy"
-                    class="w-[420px] h-[270px] rounded-2xl object-cover " alt="Miniatura">
-                {% endfor %}
-            </div>
-            <!-- Row 2 (Move Left) -->
-            <div class="marquee-row flex gap-3 w-[200%] justify-end" id="marquee-2">
-                {% for i in range(10, 0, -1) %}
-                <img src="/static/marquee/thumb_{{ '%02d' | format(i) }}.jpg" loading="lazy"
-                    class="w-[420px] h-[270px] rounded-2xl object-cover " alt="Miniatura">
-                {% endfor %}
-                {% for i in range(10, 0, -1) %}
-                <img src="/static/marquee/thumb_{{ '%02d' | format(i) }}.jpg" loading="lazy"
-                    class="w-[420px] h-[270px] rounded-2xl object-cover " alt="Miniatura">
-                {% endfor %}
-                {% for i in range(10, 0, -1) %}
-                <img src="/static/marquee/thumb_{{ '%02d' | format(i) }}.jpg" loading="lazy"
-                    class="w-[420px] h-[270px] rounded-2xl object-cover " alt="Miniatura">
-                {% endfor %}
-            </div>
-        </div>
-    </section>
-
-    <!-- 3. NARRATIVE CANVAS SECTION -->
-    <section id="canvas-section" class="relative bg-mna-cream" style="height: 400vh;">
-        <div class="sticky top-0 w-full h-screen overflow-hidden flex items-center justify-center">
-            <canvas id="narrative-canvas"></canvas>
-
-            <!-- Phase 1: 0-20% -->
-            <div class="canvas-text-phase absolute inset-0 flex flex-col justify-center items-start px-10 md:px-20 pointer-events-none opacity-0"
-                id="phase-1">
-                <h2 class="font-heading italic text-5xl md:text-7xl font-bold mb-4 drop-shadow-lg text-mna-green">Cada
-                    imagen es un documento</h2>
-                <p class="text-xl md:text-3xl font-light text-mna-dark/80 max-w-xl drop-shadow-md">Detrás de
-                    cada fotografía hay un momento, un lugar, una mirada</p>
-            </div>
-
-            <!-- Phase 2: 20-55% -->
-            <div class="canvas-text-phase absolute inset-0 flex flex-col justify-center items-end text-right px-10 md:px-20 pointer-events-none opacity-0"
-                id="phase-2">
-                <h2 class="font-heading italic text-5xl md:text-7xl font-bold mb-6 drop-shadow-lg text-mna-dark">Un
-                    archivo vivo de la memoria</h2>
-                <ul class="text-lg md:text-2xl font-light text-mna-dark/80 flex flex-col gap-3 drop-shadow-md">
-                    <li>Fichas de catalogación y contexto histórico</li>
-                    <li>Clasificación por autor, década y colección</li>
-                    <li>Consulta abierta para investigación</li>
-                </ul>
-            </div>
-
-            <!-- Phase 3: 55-85% -->
-            <div class="canvas-text-phase absolute inset-0 flex flex-col justify-center items-start px-10 md:px-20 pointer-events-none opacity-0"
-                id="phase-3">
-                <h2 class="font-heading italic text-5xl md:text-7xl font-bold mb-4 drop-shadow-lg text-mna-dark">
-                    Resguardo, estudio y difusión</h2>
-                <p class="text-xl md:text-3xl font-light text-mna-dark/80 max-w-2xl drop-shadow-md">
-                    Facilitar la consulta y fomentar la colaboración en el estudio de la memoria histórica del país</p>
-            </div>
-
-            <!-- Phase 4: 85-100% -->
-            <div class="canvas-text-phase absolute inset-0 flex flex-col justify-center items-center text-center px-10 pointer-events-none opacity-0"
-                id="phase-4">
-                <h2 class="font-heading italic text-6xl md:text-8xl font-bold mb-4 drop-shadow-lg text-mna-burgundy">
-                    Explora el archivo completo</h2>
-                <p
-                    class="text-2xl md:text-4xl font-light text-mna-dark/90 font-display uppercase tracking-wider drop-shadow-md">
-                    Miles de fotografías, un solo acervo digital</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. ABOUT SECTION -->
+    <!-- 2. ABOUT SECTION -->
     <section
         class="min-h-screen bg-mna-cream relative w-full flex-col justify-center items-center px-5 sm:px-8 md:px-10 py-20 overflow-hidden">
 
@@ -187,7 +77,7 @@
         </div>
     </section>
 
-    <!-- 5. EXPLORE SECTION -->
+    <!-- 3. EXPLORE SECTION -->
     <section
         class="bg-mna-brown rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] px-5 sm:px-8 md:px-10 py-20 sm:py-24 md:py-32 relative z-20 text-mna-cream">
         <h2 class="font-display uppercase text-center mb-16 sm:mb-20 md:mb-28"
@@ -275,7 +165,7 @@
         </div>
     </section>
 
-    <!-- 6. COLLECTIONS SECTION -->
+    <!-- 4. COLLECTIONS SECTION -->
     <section
         class="bg-mna-cream rounded-t-[40px] sm:rounded-t-[50px] md:rounded-t-[60px] -mt-10 sm:-mt-12 md:-mt-14 relative z-30 pt-20 pb-32">
         <h2 class="text-gradient font-display uppercase text-center mb-16" style="font-size: clamp(3rem, 12vw, 160px);">
@@ -309,9 +199,9 @@
                             class="w-full object-cover rounded-[30px] sm:rounded-[40px]"
                             style="height: clamp(160px, 22vw, 340px);" alt="Expedición 2">
                     </div>
-                    <div class="w-[60%]">
+                    <div class="w-[60%] relative">
                         <img src="/static/colecciones/F1_2.jpg"
-                            class="w-full h-full object-cover rounded-[30px] sm:rounded-[40px]"
+                            class="absolute inset-0 w-full h-full object-cover rounded-[30px] sm:rounded-[40px]"
                             alt="Expedición Principal">
                     </div>
                 </div>
@@ -344,9 +234,9 @@
                             class="w-full object-cover rounded-[30px] sm:rounded-[40px]"
                             style="height: clamp(160px, 22vw, 340px);" alt="Retrato 2">
                     </div>
-                    <div class="w-[60%]">
+                    <div class="w-[60%] relative">
                         <img src="/static/colecciones/c2_1.jpg"
-                            class="w-full h-full object-cover rounded-[30px] sm:rounded-[40px]" alt="Retrato Principal">
+                            class="absolute inset-0 w-full h-full object-cover rounded-[30px] sm:rounded-[40px]" alt="Retrato Principal">
                     </div>
                 </div>
             </div>
@@ -377,9 +267,9 @@
                             class="w-full object-cover rounded-[30px] sm:rounded-[40px]"
                             style="height: clamp(160px, 22vw, 340px);" alt="Construcción 2">
                     </div>
-                    <div class="w-[60%]">
+                    <div class="w-[60%] relative">
                         <img src="/static/colecciones/c3_1.jpg"
-                            class="w-full h-full object-cover rounded-[30px] sm:rounded-[40px]"
+                            class="absolute inset-0 w-full h-full object-cover rounded-[30px] sm:rounded-[40px]"
                             alt="Construcción Principal">
                     </div>
                 </div>
@@ -387,59 +277,121 @@
         </div>
     </section>
 
-    <!-- 7. GALLERY SECTION -->
-    <section class="bg-mna-cream px-5 sm:px-8 md:px-10 py-20 pb-40">
+    <!-- 5. CARTELERA DE EVENTOS -->
+    <section id="eventos" class="bg-mna-dark text-mna-cream px-5 sm:px-8 md:px-10 py-20">
         <div class="max-w-7xl mx-auto">
-            <!-- Search & Filters -->
-            <div class="flex flex-col md:flex-row gap-6 mb-12 items-center justify-between">
-                <div class="w-full md:w-1/3">
-                    <div class="liquid-glass-strong rounded-full px-6 py-3 flex items-center gap-3">
-                        <i data-lucide="search" class="text-mna-dark w-5 h-5"></i>
-                        <input type="text" placeholder="Buscar en el archivo..."
-                            class="bg-transparent border-none outline-none text-mna-dark w-full placeholder:text-mna-dark/50">
-                    </div>
+            <h2 class="font-display uppercase text-center mb-16 text-mna-beige" style="font-size: clamp(3rem, 10vw, 100px);">
+                Cartelera de Eventos
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="border border-mna-beige rounded-3xl p-6 hover:bg-mna-brown transition-colors">
+                    <h3 class="font-heading italic text-3xl mb-2 text-mna-beige">Conferencia Magistral</h3>
+                    <p class="text-sm uppercase tracking-widest mb-4 opacity-70">15 de Noviembre - 12:00 PM</p>
+                    <p class="font-light mb-6">Historia de la fotografía antropológica en México.</p>
+                    <button class="bg-mna-beige text-mna-dark px-6 py-2 rounded-full font-medium uppercase text-sm">Más Info</button>
                 </div>
-                <div class="flex flex-wrap gap-3 justify-center md:justify-end">
-                    <button
-                        class="liquid-glass rounded-full px-5 py-2 text-sm font-medium uppercase tracking-wider text-mna-dark hover:bg-mna-dark/10 transition-colors">Década</button>
-                    <button
-                        class="liquid-glass rounded-full px-5 py-2 text-sm font-medium uppercase tracking-wider text-mna-dark hover:bg-mna-dark/10 transition-colors">Colección</button>
-                    <button
-                        class="liquid-glass rounded-full px-5 py-2 text-sm font-medium uppercase tracking-wider text-mna-dark hover:bg-mna-dark/10 transition-colors">Tema</button>
-                    <button
-                        class="liquid-glass rounded-full px-5 py-2 text-sm font-medium uppercase tracking-wider text-mna-dark hover:bg-mna-dark/10 transition-colors">Formato</button>
+                <div class="border border-mna-beige rounded-3xl p-6 hover:bg-mna-brown transition-colors">
+                    <h3 class="font-heading italic text-3xl mb-2 text-mna-beige">Taller de Conservación</h3>
+                    <p class="text-sm uppercase tracking-widest mb-4 opacity-70">22 de Noviembre - 10:00 AM</p>
+                    <p class="font-light mb-6">Técnicas de preservación de archivos fotográficos y negativos.</p>
+                    <button class="bg-mna-beige text-mna-dark px-6 py-2 rounded-full font-medium uppercase text-sm">Más Info</button>
+                </div>
+                <div class="border border-mna-beige rounded-3xl p-6 hover:bg-mna-brown transition-colors">
+                    <h3 class="font-heading italic text-3xl mb-2 text-mna-beige">Exposición Temporal</h3>
+                    <p class="text-sm uppercase tracking-widest mb-4 opacity-70">1 al 30 de Diciembre</p>
+                    <p class="font-light mb-6">Muestra de las recientes donaciones al archivo histórico del MNA.</p>
+                    <button class="bg-mna-beige text-mna-dark px-6 py-2 rounded-full font-medium uppercase text-sm">Más Info</button>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {% for i in range(1, 13) %}
-                <div class="liquid-glass rounded-3xl p-3 flex flex-col gap-3 group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-2xl w-full h-[300px]">
-                        <img src="/static/gallery/g_{{ '%02d' | format(i) }}.jpg"
-                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                            loading="lazy" alt="Foto Galería">
-                        <div
-                            class="absolute inset-0 bg-mna-burgundy opacity-0 group-hover:opacity-20 transition-opacity duration-300 mix-blend-color">
-                        </div>
-                    </div>
-                    <div class="px-2 pb-2">
-                        <h4 class="font-heading italic text-xl mb-1 truncate">Fotografía Histórica {{ i }}</h4>
-                        <div
-                            class="flex justify-between items-center text-xs text-mna-dark/60 font-medium uppercase tracking-wider">
-                            <span>Anónimo</span>
-                            <span>194{{ i % 10 }}</span>
-                        </div>
-                    </div>
+    <!-- 6. CITAS Y TEAMS -->
+    <section id="citas" class="bg-mna-cream px-5 sm:px-8 md:px-10 py-20 relative">
+        <div class="max-w-4xl mx-auto bg-white rounded-[40px] shadow-2xl p-8 sm:p-12 border border-mna-beige/30">
+            <h2 class="font-display uppercase text-center mb-8 text-mna-burgundy" style="font-size: clamp(2rem, 8vw, 80px);">
+                Agendar Visita
+            </h2>
+            <p class="text-center mb-10 font-light text-mna-dark/80 text-lg">Agenda tu cita para consultar el archivo histórico presencial o solicita una asesoría virtual vía Microsoft Teams.</p>
+            
+            <form id="cita-form" class="flex flex-col gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="text" id="cita-nombre" placeholder="Nombre completo" required class="w-full px-5 py-4 rounded-xl bg-mna-cream/50 border-none outline-none focus:ring-2 focus:ring-mna-beige">
+                    <input type="email" id="cita-correo" placeholder="Correo electrónico" required class="w-full px-5 py-4 rounded-xl bg-mna-cream/50 border-none outline-none focus:ring-2 focus:ring-mna-beige">
+                    <input type="text" id="cita-institucion" placeholder="Institución" class="w-full px-5 py-4 rounded-xl bg-mna-cream/50 border-none outline-none focus:ring-2 focus:ring-mna-beige">
+                    <input type="tel" id="cita-telefono" placeholder="Teléfono" class="w-full px-5 py-4 rounded-xl bg-mna-cream/50 border-none outline-none focus:ring-2 focus:ring-mna-beige">
                 </div>
-                {% endfor %}
-            </div>
+                <input type="text" id="cita-proyecto" placeholder="Proyecto de investigación" required class="w-full px-5 py-4 rounded-xl bg-mna-cream/50 border-none outline-none focus:ring-2 focus:ring-mna-beige">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="date" id="cita-fecha" required class="w-full px-5 py-4 rounded-xl bg-mna-cream/50 border-none outline-none focus:ring-2 focus:ring-mna-beige text-mna-dark/70">
+                    <input type="time" id="cita-hora" required class="w-full px-5 py-4 rounded-xl bg-mna-cream/50 border-none outline-none focus:ring-2 focus:ring-mna-beige text-mna-dark/70">
+                </div>
 
-            <div class="flex justify-center mt-16">
-                <button
-                    class="liquid-glass rounded-full px-10 py-4 font-medium uppercase tracking-widest text-mna-dark hover:bg-mna-dark/10 transition-colors">
-                    Cargar más fotografías
+                <label class="flex items-center gap-3 cursor-pointer p-4 bg-mna-cream/30 rounded-xl border border-mna-beige/50">
+                    <input type="checkbox" id="cita-teams" class="w-6 h-6 text-mna-burgundy focus:ring-mna-burgundy rounded">
+                    <span class="font-medium text-lg">Solicitar asesoría virtual por Microsoft Teams</span>
+                </label>
+
+                <button type="submit" class="mt-4 bg-mna-burgundy text-mna-cream font-medium uppercase tracking-widest px-8 py-5 rounded-full hover:bg-opacity-90 transition-all text-lg w-full">
+                    Confirmar Cita
                 </button>
+            </form>
+            <div id="cita-success" class="hidden mt-8 p-6 bg-mna-green text-white rounded-2xl text-center">
+                <h3 class="text-2xl font-bold mb-2">¡Cita agendada!</h3>
+                <p>Te hemos enviado un correo con la confirmación.</p>
+                <div id="teams-link-container" class="hidden mt-4">
+                    <a id="teams-link" href="#" target="_blank" class="inline-block bg-white text-mna-green px-6 py-2 rounded-full font-bold">Unirse a la reunión de Teams</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. JUEGOS (ROMPECABEZAS) -->
+    <section id="juegos" class="bg-mna-brown text-mna-cream px-5 sm:px-8 md:px-10 py-20 rounded-t-[40px]">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="font-display uppercase text-center mb-8 text-mna-beige" style="font-size: clamp(3rem, 10vw, 100px);">
+                Rompecabezas
+            </h2>
+            <p class="text-center mb-16 font-light text-lg opacity-80">Elige una imagen histórica y arma el rompecabezas.</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Juego 1 -->
+                <div class="cursor-pointer group" onclick="startPuzzle('/static/gallery/g_01.jpg')">
+                    <div class="overflow-hidden rounded-3xl aspect-[4/3] relative">
+                        <img src="/static/gallery/g_01.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="bg-mna-beige text-mna-dark px-6 py-2 rounded-full font-bold uppercase">Jugar</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Juego 2 -->
+                <div class="cursor-pointer group" onclick="startPuzzle('/static/gallery/g_02.jpg')">
+                    <div class="overflow-hidden rounded-3xl aspect-[4/3] relative">
+                        <img src="/static/gallery/g_02.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="bg-mna-beige text-mna-dark px-6 py-2 rounded-full font-bold uppercase">Jugar</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Juego 3 -->
+                <div class="cursor-pointer group" onclick="startPuzzle('/static/gallery/g_03.jpg')">
+                    <div class="overflow-hidden rounded-3xl aspect-[4/3] relative">
+                        <img src="/static/gallery/g_03.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                            <span class="bg-mna-beige text-mna-dark px-6 py-2 rounded-full font-bold uppercase">Jugar</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Puzzle Area -->
+            <div id="puzzle-area" class="hidden flex-col items-center">
+                <button onclick="closePuzzle()" class="mb-6 bg-mna-burgundy px-6 py-2 rounded-full font-bold uppercase text-sm">Cerrar Juego</button>
+                <div id="puzzle-board" class="w-[300px] h-[300px] sm:w-[500px] sm:h-[500px] bg-mna-dark relative border-4 border-mna-beige shadow-2xl">
+                    <!-- Tiles will be injected here via JS -->
+                </div>
+                <p id="puzzle-win" class="hidden mt-6 text-3xl font-heading text-mna-beige">¡Felicidades, armaste la imagen!</p>
             </div>
         </div>
     </section>
@@ -450,6 +402,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="/static/js/main.js"></script>
+    <script src="/static/js/ejes.js"></script>
+    <script src="/static/js/orbita.js"></script>
+    <script src="/static/js/citas.js"></script>
+    <script src="/static/js/puzzle.js"></script>
 </body>
-
 </html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eje temático · Fondo Fotográfico MNA</title>
+    <link rel="stylesheet" href="/static/css/style.css?v=3">
+</head>
+
+<body class="eje-page">
+    <!-- El contenido de esta página lo llena static/js/eje.js según el id de la URL (/ejes/{id}) -->
+    <header class="eje-hero">
+        <img id="eje-imagen" class="eje-hero-imagen" alt="">
+        <div class="eje-hero-velo"></div>
+        <a id="eje-volver" href="/#galeria" class="eje-volver nav-btn">← Todos los ejes</a>
+        <div class="eje-hero-texto">
+            <p class="eje-kicker">Eje temático <span id="eje-numero"></span></p>
+            <h1 id="eje-titulo" class="eje-titulo"></h1>
+        </div>
+    </header>
+
+    <main class="eje-contenido">
+        <p class="eje-aviso">Estamos preparando las fichas y fotografías de este eje temático.</p>
+        <nav class="eje-nav" aria-label="Otros ejes temáticos">
+            <a id="eje-anterior" class="nav-btn" href="#">← Anterior</a>
+            <a id="eje-siguiente" class="nav-btn" href="#">Siguiente →</a>
+        </nav>
+    </main>
+
+    <script src="/static/js/ejes.js"></script>
+    <script src="/static/js/eje.js"></script>
+</body>
+
+</html>
